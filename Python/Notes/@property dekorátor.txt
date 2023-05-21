@@ -1,0 +1,32 @@
+	property(fget, fset, fdel, doc) <---- ez a fukció teljesen eltörli a magábazárásos alsó vonalakat és megint elő lehet hívni egyszerűen az értékeket. Csak a zárójelen belül be kell írni a fukcióknak a hívó neveit. Szóval attól még muszáj építeni getter, setter, deleter függvényeket. Ezt lehet belőle felépíteni:
+
+weight = property(getWeight, setWeight, delWeight,  "Docstring for the 'weight' property")
+
+De ezt lehet sokkal rövidebben, méghozzá a
+@propert kóddal:
+
+class Box:
+ def __init__(self, weight):
+   self.__weight = weight
+ 
+ @property
+ def weight(self):
+   """Docstring for the 'weight' property"""
+   return self.__weight
+ 
+ 
+ @weight.setter
+ def weight(self, weight):
+   if weight >= 0:
+     self.__weight = weight
+ 
+ @weight.deleter
+ def weight(self):
+   del self.__weight
+
+
+a @property után megírt getter metódus után a függvény nevét fogja képviselni a @weight. Az utána megírt függvények azt az alap metódust fogja magával végig vinni, és úgyanúgy lehet majd használni őket, mintha ezt csinálnánk:
+
+weight = property(getWeight, setWeight, delWeight,  "Docstring for the 'weight' property")
+
+csak most a @propertyt használtuk. A docstring csak annyit jelent, hogy eltudjuk magyarázni, hogy ez a funkció mit is csinál. Nem változtat a kódon.

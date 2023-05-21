@@ -1,0 +1,20 @@
+Literálok: literals
+Változók: variables
+Operátorok: operators
+Kifejezések: expressions
+Utasítások: statements
+Függvények: functions
+Osztályok: classes
+Modulok: modules
+Dekorátorok: decorators
+Generátorok: generators
+Iterátorok: iterators
+Kivételek: exceptions
+Assertion-ok: assertions
+Kommentek: comments
+Blokkok: blocks
+Namespace-ek: namespaces
+Importálások: imports
+Aliasok: aliases
+Külső fájlok: external files
+Standard könyvtár: standard library.

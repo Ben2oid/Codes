@@ -1,0 +1,28 @@
+
+
+"".join(variable) - előbb jön, hogy miként szeretnéd őket összekapcsolni és csak ennél van ilyen furán "".join(variáns)
+
+variable.replace() - elfogad két értéket magába, az egyik, hogy mit keressen egy szövegben a másik hogy mivé változtassa
+
+variable.upper() - csak nagy betűk
+variable.lower() - minden betű kicsi
+variable.title() - minden kezdőbetűt naggyá alakít
+variable.split() - elfogad egy értéket, ami által ott fog elválasztódni a szöveg, amit megadtunk értékbe
+variable.strip() - eltűnteti a fölösleges üres tereket egy szövegből vagy ha adsz egy értéket, akkor azt. A strip funkció a szöveg külsejétől a belseiég takarítj le a dolgokat (---> szöveg <---)
+
+len(variable) - meg fogja számolni, hogy mennyi részből áll maga a lista vagy mennyi betűből áll egy szósor.
+
+variable.find() - meg lehet adni neki értéket, amire egy számot fog visszadni, hogy melyik pozícióban lehet megtalálni az adott értéket. pl: "smooth".find("oo") eredménye, ha kinyomtatjuk, hogy 2 és ezt a számot listába is lehet adni.
+
+variable.format() - segít abban, hogy a szövegben az adott {} jellel jelölt helyekre helyettesítsen sorrendileg szavakat, ahogy az érték meg van adva a zárójelen belül. pl: "My favorite song is {} by {}.".format(song, artist). Ez nagyon jó arra, hogy változó szövegeket tudjunk létrehozni. 
+*** Ha viszont a sorrendet szeretnénk felcserélgetni, akkor a format után a zárójelbe megtudjuk adni, hogy milyen név alatt keresse a kapcsos zárójelek közötti szavakat. pl: "My favorite song is {SONG} by {ARTIST}.".format(ARTIST=artist, SONG=song). Ahol az egyenlőség jel utáni megnevezés fogja meghatározni a pozícióját az adott szövegnek.
+
+Röviden
+
+.upper(), .title(), and .lower() adjust the casing of your string.
+.split() takes a string and creates a list of substrings.
+.join() takes a list of strings and creates a string.
+.strip() cleans off whitespace, or other noise from the beginning and end of a string.
+.replace() replaces all instances of a character/string in a string with another character/string.
+.find() searches a string for a character/string and returns the index value that character/string is found at.
+.format() allows you to interpolate a string with variables.

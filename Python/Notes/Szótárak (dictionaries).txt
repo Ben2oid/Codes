@@ -1,0 +1,32 @@
+key: value - kulcs: érték párokról van szó. mindig {}-el jelöljük a szótárakat.
+
+Value - akármi lehet
+
+Key - minden lehet kivéve lista, mert a listák változtathatóak!!!
+
+Ha hozzá akarunk adni valamit a szótárunkhoz:
+
+menu["cheesecake"] = 8
+          ^          ^
+         Key        Value
+
+.update() - tel fel lehet gyorsítani egy szótárnak a sorait
+
+variable.update({key: value, key: value,})
+
+ezzel a variable-hez hozzáfogjuk adni a többi kulcs-értéket.
+
+sensors = {"living room": 21, "kitchen": 23, "bedroom": 20}
+sensors.update({"pantry": 22, "guest room": 25, "patio": 34})
+# {"living room": 21, "kitchen": 23, "bedroom": 20, "pantry": 22, "guest room": 25, "patio": 34}
+
+Meg lehet változtatni az értéket egyébként azzal, hogy ugyanazt a kulcsot hívjuk elő a variablevel együtt.:
+
+menu = {"oatmeal": 3, "avocado toast": 6}
+menu["oatmeal"] = 5
+print(menu)
+# {"oatmeal": 5, "avocado toast": 6}
+
+szótár.values() - meg fogja adni az értékét egy szótárnak
+szótár.keys() - meg fogja adni a kulcsát egy szótárnak
+szótár.items() - az egész kulcs:érték párt fogja megadni

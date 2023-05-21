@@ -1,0 +1,47 @@
+két fajta tesztelés van:
+MANUÁLIS: ember teszteli
+AUTOMATIKUS: program tesztelés. Gyorsabb és kisebb a hiba lehetőség.
+
+
+	assert kijelentéssel lehet automatizált hiba kódot készíteni:
+
+így néz ki a szintaxis
+	assert <condition>, 'Message if condition is not met'
+
+Ez pedig egy példa, hogyan kell alkalmazni:
+
+def times_ten(number):
+    return number * 100
+ 
+result = times_ten(20)
+assert result == 200, 'Expected times_ten(20) to return 200, instead got ' + str(result)
+
+és ez egy AssertionError nevű hibakódot fog adni nekünk:
+
+#AssertionError: Expected times_ten(20) to return 200, instead got 2000
+
+	Lehet a kódot automatikusan tesztelni úgy, hogy írsz egy funkciót, amin belül assert-eled a tesztelni kívánt függvényt 
+és ahhoz hozzácsatolsz egy kívánt eredményt és leírást. PL:
+
+def get_nearest_exit(row_number):
+  if row_number < 15:
+    location = 'front'
+  elif row_number < 30:
+    location = 'middle'
+  else:
+    location = 'back'
+  return location
+
+# Write your code below:
+def test_row_1():
+  assert get_nearest_exit(1) == "front", 'The nearest exit to row 1 is in the front!'
+
+def test_row_20():
+  assert get_nearest_exit(20) == "middle", 'The nearest exit to row 20 is in the middle!'
+
+def test_row_40():
+  assert get_nearest_exit(40) == "back", 'The nearest exit to row 40 is in the back!'
+
+test_row_1()
+test_row_20()
+test_row_40()

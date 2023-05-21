@@ -1,0 +1,84 @@
+__init__(), __repr__(), __add__(), __len__() <---- Dunder metódusok egy osztályon belül.
+Konstruktor, szöveg reprezentáns, összeadás, hosszusága egy listának. Ezeket mind egy osztály alá kell beépíteni, ha akarjuk használni ezeket a funkciókat.
+
+Egy osztályt be lehet építeni egy másik osztályba. Így vannak alsóosztályok és felsők pl:
+
+class Allat:
+	def __init__(self, nev):
+		self.nev = nev
+
+
+class Kisallat(Allat):
+	pass
+
+
+itt az alsó osztályba bele van építve a felső osztály.
+
+mikor a self-et használjuk egy metódusban, az majd a későbbiekben felhasznált objektumot fogja jelölni
+
+cica = Allat("Mircike")
+
+ilyenkor a selfben a cica objektum fogja betölteni a helyét és a benne megadott érték fogja reprezentálni azt, ami konstruktoron belül meg van követelve. Ebben az esetben a "Mircike" az.
+
+
+Az OPP-nek 4 szintje van:
+
+**Polimorfizmus - különböző fajta objektumokon (lista, szöveg), más osztályoból ugynazokat az operációkat lehet rajtuk használni, mint például egy loopban átforgatni őket.
+
+**Absztrakció - létre lehet hozni egy elvonatkoztatott osztályt ezzel a metódussal. from abc import ABC, abstractmethod-dal. Ezt ha beépíted egy osztályodba, minden más hozzáfűzött osztálynál meg fogja követelni az adott függvényt.
+
+from abc import ABC, abstractmethod
+ 
+class Animal(ABC):
+  def __init__(self, name):
+    self.name = name
+ 
+  @abstractmethod
+  def make_noise(self):
+    pass
+ 
+class Cat(Animal):
+  def make_noise(self):
+    print("{} says, Meow!".format(self.name))
+ 
+class Dog(Animal):
+  def make_noise(self):
+    print("{} says, Woof!".format(self.name))
+ 
+kitty = Cat("Maisy")
+doggy = Dog("Amber")
+kitty.make_noise() # "Maisy says, Meow!"
+doggy.make_noise() # "Amber says, Woof!"
+
+Például ebben az esetben meg fogja követelni a kódunktól, hogy minden egyes állat osztálynak legyen egy make_noise() metódusa. Ha nincs megadva, akkor ki is fogja írni a terminálon, hogy hiányzik ez a megadott adat.
+
+
+**Örökletesség - Egy osztályt újra lehet használni egy másik osztályon belül. Itt jön be a super() funkció is.
+
+
+**Encapsulation (magábazárás) - különböző szintjei vannak és az alsóvonalak mennyisége határozza meg hogy mennyire privát (_, __). az egy alsó vonal nem engedi hogy direkt változtass dolgokat az osztályon belül, de az alsóosztályok hozzáférhetnek az adatokhoz. A kettősvonal az ősosztályon belül teljesen privátá tesz egy függvényt vagy változót, úgy hogy az sose fog változni és nem is lehet előhívni. Ennek az előnye, hogy nem lehet simán előhívni egy értéket az ősosztályból. Pl nem tudják megnézni a bankiszámládat egy sima előhívással. Kell hozá egy publikus kulcs, ami előhalássza neked ezt az adatot egy függvényen keresztül. Az egyes aláhúzott vonal igazából nem csinál semmit, de jó arra, hogy a többi programozó értse, hogy ez egy titkolt érték kell, hogy legyen.
+
+
+	super(). <--- egy beépített függvénye a pythonnak. Ezzel előtudjuk hívni az ősfüggvénynek egy metódusát egy alsóbbfüggvényben. Ezzel a alsóbbfüggvényben tudjuk módosítani az ősfüggvény metódusát. Először mindig be kell hívni az adott függvényt, amit alkalmazni akarunk az ősfüggvényből és alá beírva a super().függvényneve() parancsot, alá megírhatjuk, hogy mi változzon. Pl:
+
+class Animal():
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} says Meow!"
+    
+class Dog(Animal):
+    def speak(self):
+        super().speak
+        return f"{self.name} says Bow Bow!"
+
+cat1 = Animal("Mircike")
+print(cat1.speak())
+
+dog = Dog("Zsárkó")
+print(dog.speak())
+
+
+
+	property(fget, fset, fdel, doc) <---- ez a fukció teljesen eltörli a magábazárásos alsó vonalakat és megint elő lehet hívni egyszerűen az értékeket. Csak a zárójelen belül be kell írni a fukcióknak a hívó neveit. Szóval attól még muszáj építeni getter, setter, deleter függvényeket.

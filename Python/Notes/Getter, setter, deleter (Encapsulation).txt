@@ -1,0 +1,25 @@
+amikor magábazáródó atributumokat állítunk fel, azokat előlehet különfélemódon hívni, kitörölni vagy átalakítani egy osztályon belül.
+
+**Ha előakarjuk hívni, akkor egy függvényt csinálunk erről
+
+**Ha változtatni akarjuk szintén csinálunk egy függvényt róla
+
+**Ha törölni szeretnénk az adatot, csak előhívjuk magát az atribútomot, ami az építő modul alatt deffiniálva lett és egy del kulcsszót teszünk elé.
+
+class Animal:
+  def __init__(self, name):
+    self._name = name			<--- Maga az építő
+    self._age = None
+ 
+  def get_age(self):
+    return self._age			<--- A getter. ezzel lehet előhívni a privát értéket
+ 
+  def set_age(self, new_age):
+    if isinstance(new_age, int):	<--- A setter. Ezzel a függvénnyel lehet változtatni az értékét
+      self._age = new_age
+    else:
+      raise TypeError
+ 
+  def delete_age(self):
+    print("_age Deleted")		<--- A deleter. Itt lehet törölni a del kulcsszóval a dolgokat.
+    del self._age

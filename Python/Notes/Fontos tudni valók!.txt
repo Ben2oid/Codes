@@ -1,0 +1,4 @@
+	"\n" - új sor
+	\ - kilépteti a szövegből a az utána jövő jeleket mint pl a "-t
+	isinstance(változó, típus) - lecsekkolja, hogy a változód étéke megfelel-e az adott típusnak
+	raise - kulcsszó, amit párban lehet használni hogy mit írjon ki, általában TypeError érdemes adni. A raise kulcsszót párba lehet használni a isinstance() függvénnyel.

@@ -1,0 +1,40 @@
+lambda függvény:
+leegyszerűsíti az adott feladataink egy egy-soros függvénybe:
+
+add_two = lambda my_input: my_input + 2
+
+	**map(függvény, iterálni kívánt lista) <--- átpörgeti az adott listát akár egy akár függvényen
+
+int_list = [3, 6, 9]
+doubled = map(lambda input: input*2, int_list)
+print(list(doubled))
+#[6, 12, 18]
+
+	**filter() <--- ki lehet vele válogatni, hogy mely értékék tudjanak átjutni rajta. Pl:
+
+names = ["margarita", "Linda", "Masako", "Maki", "Angela"]
+M_names = filter(lambda name: name[0] == "M" or name[0] == "m", names) 
+print(list(M_names))
+#['margarita', 'Masako', 'Maki']
+
+
+	**reduce() <--- összepárosít minden értéket egymás után. Ezt a függvényt elő kell hívni a functools modulból. Itt egy példa szorzásrsa, de működik összeadással is meg osztással is.
+
+
+from functools import reduce
+
+int_list = [3, 6, 9, 12]
+reduced_int_list = reduce(lambda x,y: x*y, int_list)
+print(reduced_int_list)
+#1994
+
+
+egy példa, egy összetettebb if-es függvényre:
+
+grade_list = [3.5, 3.7, 2.6, 95, 87]
+
+grades_100scale = map(lambda value: value * 25 if value < 5 else value, grade_list)
+
+updated_grade_list = list(grades_100scale)
+print(updated_grade_list)
+#[87.5, 92.5, 65.0, 95, 87]

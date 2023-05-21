@@ -1,0 +1,76 @@
+Error üzenetek, amiket ugye értelmezünk, vagy magunk készítünk:
+
+raise NameError("saját szöveg") <--- ezzel egy nameerror üzenetet fogunk felhozni.
+
+def open_register(employee_status):
+  if employee_status == 'Authorized':
+    print('Successfully opened cash register')
+  else:
+    raise TypeError
+
+
+Try/Except:
+
+hibákat át lehet ugrani ezzel a sima kis kóddal. Ha a kód során érzékel hibát a rendszer, simán lehet hagyni a folyamat során egy üzenetet, hogy ott esett valami hiba. Pl:
+
+colors = {
+    'red': '#FF0000',
+    'blue': '#0000FF',
+    'yellow': '#FFFF00',
+}
+ 
+for color in ('red', 'green', 'yellow'):
+  try:
+    print('The hex value of ' + color + ' is ' + colors[color])
+  except:
+    print('An exception occurred! Color does not exist.')
+  print('Loop continues...')
+
+Ezt fogja eredményezni:
+
+The hex value of red is #FF0000
+Loop continues...
+An exception occurred! Color does not exist.
+Loop continues...
+The hex value of yellow is #FFFF00
+Loop continues...
+
+*****************************************************
+lehet így is használni a try/except-eket:
+
+
+try:
+  display_discounted_price(instrument, discount)
+except KeyError:
+  print("An invalid instrument was entered!")
+except TypeError:
+  print('Discount percentage must be a number!')
+except Exception:
+  print('Hit an exception other than KeyError or TypeError!')
+
+
+ha valamelyik hibakódot eléri, akkor a neki megfelelő szöveget fogja kiírni. Ha egyik adott hibakód se, akkor használhatjuk az Exception megnevezést, mint argument és akkor azt fogja kiírni.
+
+
+	else: <--- lehet használni az else-t is ezeknél a formáknál. Abban az esetben, ha try alatt sikeresn el lehetett indítani a függvényt, akkor az else-t fogja megadni értéknek. Pl:
+
+  try:
+    rewards_number = customer_rewards[customer]
+  except ValueError:
+    print('Customer was not found in rewards program!')
+  else:
+    print('Rewards account number is: ' + str(rewards_number))
+
+
+	finally: <---- Akár az exception vagy az else sikerül vagy sem a finally alatt megjelenő sorok meg fognak történni. Lehet else vagy except nélkül is használni.
+
+
+Review:
+
+Congratulations, you have now mastered many techniques for interacting with exceptions in Python! We learned:
+
+How exceptions differ from syntax errors
+How to read tracebacks
+How try/except/else/finally provides us with a powerful control flow for handling exceptions
+How to create and raise custom exceptions to provide more helpful errors to users of our code
+These tools will get you very far as a Python developer!

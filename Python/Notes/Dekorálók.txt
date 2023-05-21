@@ -1,0 +1,37 @@
+def dekorátor(tetszőleges_függvény):
+    def csomagoló():
+        print("Nagyon okostóni:")
+        tetszőleges_függvény()
+    return csomagoló
+
+@dekorátor
+def a_nevem():
+    print("Bence")
+
+a_nevem()
+
+
+a dekorátor funkció leegyszerűsíti a funkcióba beágyazást:
+
+ebben az esetben a dekorátor ezt teszi:
+
+dekorált_szöveg = dekortár(a_nevem)
+
+ergó becsomagolta nekem ezt a kód csoportot egyszerűbbe és könnyebb volt előhívni magát az első funkciót, amibe bele lett ágyazva az első a dekorátor által, amit egy @ jellel indítunk meg, ami után az adott fügvény nevét írjuk, amin keresztül akarjuk vinni az alsóbesorolású függvényünk.
+
+VISZONT, ha vannak paraméterek egy függvényen belül:
+
+def dekorátor(tetszőleges_függvény):
+    def csomagoló(*args, **kwargs):
+        print("Nagyon okostóni:")
+        tetszőleges_függvény(*args, **kwargs)
+    return csomagoló
+
+@dekorátor
+def a_nevem(name):
+    print(name)
+
+a_nevem("Bence")
+
+
+itt az *args és a **kwargs segíthet. Ez a két paraméter befogad akármit, ami meg van adva a paraméteren belül. Így elég szabaddá teszi a kódolást, ha paraméteresen kell alkalmaznunk a végén a dekorálót.
