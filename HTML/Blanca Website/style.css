@@ -1,0 +1,41 @@
+p {
+  text-align:justify;
+  color: aliceblue;
+}
+
+.container-image.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.stationary-image {
+  position: fixed;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+  color:aliceblue
+}
+
+.container-box {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  font-size: large;
+}
+
+/* Body and container */
+body {
+  background-color: #000000;
+}
+
+.container-image {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Fading animation */
+.fade-in {
+  opacity: 1;
+}

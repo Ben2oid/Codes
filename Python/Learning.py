@@ -1,103 +1,38 @@
-class Node:
-    def __init__(self, value, prev = None, next = None):
-        self.value = value
-        self.prev = prev
-        self.next = next
-        
-class LinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
-    
-    def empty(self):
-        return self.head is None and self.tail is None
-    
-    def get_head(self):
-        return self.head
-    
-    def insert_beginning(self, value):
-        if self.empty():
-            self.head = Node(value)
-            self.tail = self.head
-            return
-        self.head.prev = Node(value, None, self.head)
-        self.head = self.head.prev
-    
-    def insert_end(self, value):
-        if self.empty():
-            self.head = Node(value)
-            self.tail = self.head
-            return
-        self.tail.next = Node(value, self.tail)
-        self.tail = self.tail.next
-        
-    def print_forward(self):
-        itr = self.head
-        llstr = ""
-        while itr:
-            llstr += str(itr.value) + " --> "
-            itr = itr.next
-        print(llstr)
-        
-    def print_backward(self):
-        itr = self.tail
-        llstr = ""
-        while itr:
-            llstr +=  " <-- " + str(itr.value)
-            itr = itr.prev
-        print(llstr)
-        
-    def length(self):
-        itr = self.head
-        count = 0
-        while itr:
-            count += 1
-            itr = itr.next
-        return count
-            
-class HashMap:
-    def __init__(self, size):
-        self.size = size
-        self.array = [LinkedList() for i in range(self.size)]
-        
-    def hash(self, key):
-        h = 0
-        for i in key:
-            h += ord(i)
-        return h % self.size
-    
-    def set_value(self, key, value):
-        h = self.hash(key)
-        self.array[h].insert_beginning([key, value])
-        
-    def get_value(self, key):
-        h = self.hash(key)
-        index = self.array[h]
-        itr = index.get_head()
-        for i in range(index.length()):
-            if itr.value[0] == key:
-                return itr.value[1]
-            itr = itr.next
-        
+import os
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse
 
-t = HashMap(100)
-ll = LinkedList()
-# ll.insert_beginning(1)
-# ll.insert_beginning(2)
-# ll.insert_beginning(3)
-# ll.insert_end(0)
-# ll.insert_end(-1)
-# ll.print_forward()
-# ll.print_backward()
-# print(ll.length())
-# print(ll.empty())
-print(t.hash("fecókadsdd"))
-print(t.hash("fecókadsd"))
-print(t.hash("Bence"))
-print(t.hash("Key"))
-t.set_value("fecókadsdd", "Blanca")
-t.set_value("fecókadsd", "Szopdkifaggot")
-print(t.get_value("fecókadsdd"))
-print(t.get_value("fecókadsd"))
-print(t.array)
+def download_images(url, output_dir):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Create the output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Find all image tags
+    img_tags = soup.find_all('img')
+    
+    for img_tag in img_tags:
+        img_url = urljoin(url, img_tag['src'])
+        
+        # Remove query parameters from the URL
+        parsed_url = urlparse(img_url)
+        img_path = parsed_url.path
+        
+        # Generate the image file name
+        img_filename = os.path.join(output_dir, os.path.basename(img_path))
+        
+        # Send a request to download the image
+        img_response = requests.get(img_url)
+        
+        # Save the image to the output directory
+        with open(img_filename, 'wb') as img_file:
+            img_file.write(img_response.content)
+        
+        print(f"Downloaded: {img_filename}")
 
+# Usage example
+url = 'https://blancajano.com'
+output_dir = r'C:/Users/Administrator/Pictures/'  # Replace with your desired output directory
+download_images(url, output_dir)
