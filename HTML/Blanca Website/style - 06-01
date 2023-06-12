@@ -6,7 +6,7 @@ html {
 }
 
 p {
-  color: rgb(0, 0, 0);
+  color: aliceblue;
   font-weight: bold;
   display: block;
   text-size-adjust: 10%;
@@ -31,12 +31,6 @@ body {
   margin-top: 10%;
   margin-bottom: 5%;
   line-height: 0.2;
-  opacity: 0; /* Set initial opacity to 0 */
-  transition: opacity 0.5s ease; /* Add transition effect */
-}
-
-.titles.visible {
-  opacity: 1; /* Set opacity to 1 for visible state */
 }
 
 #space-for-image {
@@ -56,7 +50,7 @@ body {
   left: 0;
   width: 100%;
   opacity: 0; /* Set initial opacity to 0 */
-  transition: opacity 0.2s ease;
+  transition: opacity 0.5s ease;
 }
 
 
@@ -116,34 +110,8 @@ strong {
   font-size: 120px; /* Your desired font size */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 576px) {
   .my-heading {
     font-size: 60px; /* Adjust font size for smaller screens */
   }
-}
-
-@media (max-width: 990px) {
-  .text-container .row {
-    flex-direction: column;
-  }
-  
-  .text-container .col {
-
-  }
-}
-
-.text-justify {
-  text-align: justify;
-  text-justify: distribute-all-lines;
-}
-
-@media (max-width: 990px) {
-  #beginning-text {
-    text-indent: 20px;
-  }
-}
-
-.transparent {
-  opacity: 0;
-  transition: opacity 0.5s ease;
 }
